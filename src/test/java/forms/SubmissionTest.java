@@ -26,8 +26,8 @@ public class SubmissionTest {
 
     @Test
     public void censorNameTest(){
-        assertEquals("A.M.C.", standardSub.censorName(" ava   mirzaee  cheshmeh"));
-        System.out.println(standardSub.censorName(" ava   mirzaee  cheshmeh"));
+        assertEquals("A.M.C.", standardSub.generateCensoredName(" ava   mirzaee  cheshmeh"));
+        System.out.println(standardSub.generateCensoredName(" ava   mirzaee  cheshmeh"));
     }
 
 }

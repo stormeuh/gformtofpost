@@ -44,11 +44,15 @@ public class Submission {
         this.content = content;
     }
 
+    public void censorName(String name) {
+
+    }
+
     /******************************************
      * Name censoring
      ******************************************/
 
-    public String censorName(String input) {
+    public String generateCensoredName(String input) throws NullPointerException, IllegalArgumentException{
         if (input == null) throw new NullPointerException("String is null!");
         else if (input.length() == 0) throw new IllegalArgumentException("String is empty!");
 
