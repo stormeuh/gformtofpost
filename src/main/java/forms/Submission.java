@@ -1,17 +1,14 @@
 package forms;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
-import org.omg.CORBA.DynAnyPackage.Invalid;
-
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 /**
  * Created by elias on 02/06/17.
  */
 public class Submission {
 
-    public Submission(LocalDateTime submissionTime, String content) {
+    public Submission(LocalDateTime submissionTime, boolean reviewed, int position, String content) {
+        this.position = position;
         this.content = content;
         this.submissionTime = submissionTime;
     }
@@ -25,6 +22,40 @@ public class Submission {
     public LocalDateTime getSubmissionTime(){
         return this.submissionTime;
     }
+
+    /******************************************
+     * Reviewing
+     ******************************************/
+
+    private boolean reviewed = false;
+
+    public boolean isReviewed(){
+        return reviewed;
+    }
+
+    public void setReviewed(){
+        this.reviewed = true;
+    }
+
+    /******************************************
+     * Position
+     ******************************************/
+
+    private int position;
+
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public boolean isValidPosition(int position){
+        return position > 0;
+    }
+
 
     /******************************************
      * Content
@@ -45,7 +76,11 @@ public class Submission {
     }
 
     public void censorName(String name) {
-
+        String content = getContent();
+        if(content.contains(name)){
+            content.replace(name, generateCensoredName(name));
+        }
+        setContent(content);
     }
 
     /******************************************
@@ -76,6 +111,4 @@ public class Submission {
         }
         return new String(new char[]{initial});
     }
-
-
 }
